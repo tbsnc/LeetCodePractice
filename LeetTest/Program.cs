@@ -11,6 +11,16 @@ using System.Threading.Tasks;
 
 namespace LeetTest
 {
+    public class ListNode //21. Merge Two sorted list
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -31,16 +41,72 @@ namespace LeetTest
             //Console.WriteLine(ValidParentheses2("([](()(){[]}))").ToString());
             //Console.WriteLine(ValidParentheses2("()[]{}").ToString());
             //Console.WriteLine(LongestCommonPrefix(
-             //   new string[] { "cir", "car" }
-             //   ));
-            Console.WriteLine(LongestCommonPrefix(
-                new string[] { "flower", "flower", "flower", "flower" })
-                );
+            //   new string[] { "cir", "car" }
+            //   ));
+            //Console.WriteLine(LongestCommonPrefix(
+            //  new string[] { "flower", "flower", "flower", "flower" })
+            // );
+            Console.WriteLine(RemoveDuplicates(new int[] { -1, 0, 0, 0, 0, 3, 3 }).ToString());
+
+
         }
 
 
 
 
+
+
+        public static int RemoveDuplicates2(int[] nums)
+        {
+            HashSet<int> ints = new HashSet<int>();
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!ints.Contains(nums[i]))
+                {
+                    ints.Add(nums[i]);
+                    nums[count] = nums[i]; 
+                    count++;
+                }
+            }
+            return ints.Count();
+
+        }
+        public static int RemoveDuplicates(int[] nums)
+        {
+            Dictionary<int,int> result = new Dictionary<int,int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (result.ContainsKey(nums[i]))
+                {
+                    continue;
+                }else
+                {
+                    result[nums[i]] = nums[i];
+                }
+            }
+            int count = 0;
+            for (int i = result.Min(x=>x.Value); i <= result.Max(x => x.Value); i++)
+            {
+                if (result.Any(x => x.Value == i))
+                {
+                    nums[count] = i;
+                    count++;
+                }
+            }
+            return result.Count;
+        }
+        public static ListNode MergeTwoLists(ListNode list1, ListNode list2)
+        {
+            List<int> listOne = new List<int>();
+            List<int> listTwo = new List<int>();
+
+            while(list1.next != null )
+            {
+            }
+            return new ListNode();
+        }
 
 
 
@@ -314,14 +380,5 @@ namespace LeetTest
         }
     }
 
-    public class ListNode //21. Merge Two sorted list
-    {
-      public int val;
-      public ListNode next;
-      public ListNode(int val = 0, ListNode next = null)
-      {
-            this.val = val;
-            this.next = next;
-      }
-    }
+   
 }
