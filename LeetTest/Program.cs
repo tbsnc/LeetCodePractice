@@ -46,17 +46,57 @@ namespace LeetTest
             //Console.WriteLine(LongestCommonPrefix(
             //  new string[] { "flower", "flower", "flower", "flower" })
             // );
-            Console.WriteLine(RemoveDuplicates(new int[] { -1, 0, 0, 0, 0, 3, 3 }).ToString());
+            //Console.WriteLine(RemoveElement(new int[] { 1, 0, 0, 0, 0, 3, 3 }, 0).ToString());
+            Console.WriteLine(StrStrLOL("mississippi", "issipi"));
 
 
         }
 
+        public static int StrStrLOL(string haystack, string needle)
+        {
+            return haystack.IndexOf(needle);
+        }
+        public static int StrStr(string haystack, string needle)
+        {
+            if (needle.Length > haystack.Length) return -1;
+            for(int i = 0; i < haystack.Length; i++)
+            {
+                if (haystack[i] == needle[0])
+                {
+                    if (needle.Length > haystack.Length - i) return -1;
+                    if (needle == haystack.Substring(i,  needle.Length))
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+        public static int RemoveElement(int[] nums, int val) // or put all elements of value val to the end of an array, #27
+        {
+            Dictionary<int,string> dic = new Dictionary<int,string>();
+            for (int i = 0; i < nums.Count(); i++)
+            {
+                dic[i] = nums[i] == val ? "_" : nums[i].ToString();
+            }
+            int count = dic.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (dic[i] == "_") dic.Remove(i);
+            }
+            count = 0;
+            foreach (int i in dic.Keys)
+            {
+                nums[count] = Convert.ToInt32(dic[i]);
+                count++;
+            }
+               
+         
+            return dic.Count();
+        }
 
 
-
-
-
-        public static int RemoveDuplicates2(int[] nums)
+        public static int RemoveDuplicates2(int[] nums) //#26
         {
             HashSet<int> ints = new HashSet<int>();
             int count = 0;
