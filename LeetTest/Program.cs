@@ -47,16 +47,280 @@ namespace LeetTest
             //  new string[] { "flower", "flower", "flower", "flower" })
             // );
             //Console.WriteLine(RemoveElement(new int[] { 1, 0, 0, 0, 0, 3, 3 }, 0).ToString());
-            Console.WriteLine(StrStrLOL("mississippi", "issipi"));
+            //Console.WriteLine(StrStrLOL("mississippi", "issipi"));
+
+            // Console.WriteLine(SearchInsert(new int[] { 1, 3, 5, 6 }, 2));
+            /// Console.WriteLine(AddBinaryReal("11", "1"));
+            /// 
+            //Console.WriteLine(MySqrt(2147483647));
+            //  Console.WriteLine(ClimbStairs(45));
+           // Merge(new int[] { 4, 4, 0, 0, 0, 0 }, 1, new int[] { 1, 2, 3, 5, 6 }, 5);
+            Merge(new int[] { 0, 0, 3, 0, 0, 0, 0, 0, 0 },3,new int[] { -1, 1, 1, 1, 2, 3 },6);
+        }
+
+        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            if (m == 0 && n == 0) return;
+            List<int> shorterList = new List<int>();
+            List<int> longerList = new List<int>();
+            List<int> solution = new List<int>();
+            if (m > n)
+            {
+                longerList = nums1.ToArray().ToList();
+                shorterList = nums2.ToArray().ToList();
+            }else if(m == n)
+            {
+                if (nums1[0] > nums2[0])
+                {
+                    longerList = nums2.ToArray().ToList();
+
+                    shorterList = nums1.ToArray().ToList();
+                }else
+                {
+                    shorterList = nums2.ToArray().ToList(); 
+                    longerList = nums1.ToArray().ToList();
+                }
+            }else 
+            {
+                longerList = nums2.ToArray().ToList();
+                shorterList = nums1.ToArray().ToList();
+            }
+
+            int realSize = longerList.Count > shorterList.Count ? longerList.Count : shorterList.Count;
+
+            while (realSize != longerList.Count)
+            {
+                longerList.Add(0);
+            }
+
+            for (int i = 0; i < realSize; i++) 
+            {
+                foreach (int item in shorterList.Where(x => x < longerList[i] && x != 0))
+                {
+                    if (!solution.Any(x => x == item))
+                    {
+                        foreach (int item2 in shorterList.Where(x => x == item))
+                        {
+                            solution.Add(item2);
+                        }
+                        
+                    }
+                }
+                if (longerList[i] == 0 && solution.Any(x => x > 0))
+                {
+                    foreach (int item in shorterList.Where(x => x > longerList[i - 1]))
+                    {
+                        solution.Add(item);
+                    }
+                    break;
+                }
+                else 
+                {
+                    solution.Add(longerList[i]);
+                }
+
+
+                int count = shorterList.Count(x => x == longerList[i]);
+                while (count > 0)
+                {
+                    solution.Add(longerList[i]);
+                    count--;
+                }
+
+            }
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                nums1[i] = solution[i];
+            }
+        }
+        public static int ClimbStairs(int n)//#70
+        {
+
+            if(n == 0) return 0;
+
+            int prev = 0;
+            int next = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                int sum = prev + next;
+                prev = next;
+                next = sum;
+            }
+            return next;
+        }
+
+        public static int MySqrtBetter(int x)
+        {
+            if (x <= 1)
+            {
+                return x;
+            }
+
+            long left = 1, right = x / 2;
+
+            while (left <= right)
+            {
+                long mid = left + (right - left)/2;
+
+                if (mid * mid > x)
+                {
+                    right = mid - 1;
+                } 
+                else if((mid + 1) * (mid + 1) > x)
+                {
+                    return (int)mid;   
+                }else
+                {
+                    left = mid + 1;
+                }
+
+            }
+            return (int)right;
 
 
         }
 
-        public static int StrStrLOL(string haystack, string needle)
+        public static int MySqrt(int x)
+        {
+            long no1;
+
+            for (int i = 0; i < x; i++)
+            {
+                no1 = i;
+                
+                if (no1 * no1 > x)
+                {
+                    return i - 1;
+                }
+                else if (no1 * no1 == x)
+                {
+                    return i;
+                }
+            }
+            return 0;
+           
+        }
+        public static string AddBinaryReal(string aa, string bn)
+        {
+            StringBuilder a = new StringBuilder(aa);
+            StringBuilder b = new StringBuilder(bn);
+            
+
+            bool[] returnbits = new bool[a.Length];
+
+            for (int i = 0; i <= b.Length - 1; i++)
+            {
+                bool r = false; //r=0
+                for (int j = a.Length - 1; j <= a.Length; j--)
+                {
+                    bool breakcond = false;
+                    bool o1 = Convert.ToBoolean(int.Parse(a[i].ToString()));
+                    if (r == false)
+                    {
+                        if (o1 == false) { o1 = true; breakcond = true; }//break
+                        else if (o1 == true) { o1 = false; r = true; }
+                    }
+                    else
+                    {
+                        if (o1 == false) { o1 = true; breakcond = true; }//break
+                        else if (o1 == true) { o1 = false; r = true; }
+                    }
+                    
+                    a[j] = o1 == true ? '1' : '0' ;
+                    if (breakcond == true)
+                    {
+                        break;
+                    }
+                }
+
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                returnbits[i] = Convert.ToBoolean(a[i]);
+            }
+
+                        
+
+            return "";
+        }
+        public static string AddBinary(string a, string b)
+        {
+            long no1 = Convert.ToInt64(a, 2);
+            long no2 = Convert.ToInt64(b, 2);
+            return Convert.ToString(no1 + no2, 2);
+        }
+
+        public static int[] PlusOne(int[] digits)
+        {
+            bool plusOne = false;
+            List<int> list = new List<int>();
+
+            if (!digits.Any(x => x != 9))
+            {
+                list.Add(1);
+                for(int i = 1; i < digits.Length + 1; i++)
+                {
+                    list.Add(0);
+                }
+                
+            }
+            if(list.Count > 0) return list.ToArray();
+
+            for (int i = digits.Length - 1; i >= 0; i--)
+            {
+
+                if (plusOne && digits[i] != 9)
+                {
+                    digits[i] += 1;
+                    return digits;
+                }
+
+                if (digits[i] == 9) 
+                {
+                    digits[i] = 0;
+                    plusOne = true;
+                }else 
+                {
+                    digits[i]++;
+                    return digits;
+                }
+            }
+            return digits;
+        }
+
+        public static int LenghtOfLastWord(string s)
+        {
+            List<string> lista = new List<string>();
+            foreach (string item in s.Split(Convert.ToChar(" ")))
+            {
+                if (item.Trim().Length > 0)
+                {
+                    lista.Add(item);
+                }
+                
+            }
+
+            return lista[lista.Count - 1].Length;
+
+        }
+        public static int SearchInsert(int[] nums, int target)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == target)
+                {
+                    return i;
+                }
+            }
+            int next = Array.FindIndex(nums, x => x > target);
+            if(next == -1) return nums.Length;
+            return next - 1;
+        }
+        public static int StrStrLOL(string haystack, string needle) //#28 lol
         {
             return haystack.IndexOf(needle);
         }
-        public static int StrStr(string haystack, string needle)
+        public static int StrStr(string haystack, string needle)  //#28
         {
             if (needle.Length > haystack.Length) return -1;
             for(int i = 0; i < haystack.Length; i++)
