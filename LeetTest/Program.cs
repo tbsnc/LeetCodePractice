@@ -54,81 +54,90 @@ namespace LeetTest
             /// 
             //Console.WriteLine(MySqrt(2147483647));
             //  Console.WriteLine(ClimbStairs(45));
-           // Merge(new int[] { 4, 4, 0, 0, 0, 0 }, 1, new int[] { 1, 2, 3, 5, 6 }, 5);
+            // Merge(new int[] { 4, 4, 0, 0, 0, 0 }, 1, new int[] { 1, 2, 3, 5, 6 }, 5);
             Merge(new int[] { 0, 0, 3, 0, 0, 0, 0, 0, 0 },3,new int[] { -1, 1, 1, 1, 2, 3 },6);
+            //Merge(new int[] { 2, 0 }, 1, new int[] { 1}, 1);
+            Merge(new int[] { 1,2,3,4,5,0 }, 5, new int[] { 6 }, 1);
         }
 
         public static void Merge(int[] nums1, int m, int[] nums2, int n)
         {
             if (m == 0 && n == 0) return;
-            List<int> shorterList = new List<int>();
-            List<int> longerList = new List<int>();
+            List<int> list = new List<int>();
+            List<int> listBig = new List<int>();
             List<int> solution = new List<int>();
-            if (m > n)
-            {
-                longerList = nums1.ToArray().ToList();
-                shorterList = nums2.ToArray().ToList();
-            }else if(m == n)
-            {
-                if (nums1[0] > nums2[0])
-                {
-                    longerList = nums2.ToArray().ToList();
 
-                    shorterList = nums1.ToArray().ToList();
-                }else
-                {
-                    shorterList = nums2.ToArray().ToList(); 
-                    longerList = nums1.ToArray().ToList();
-                }
-            }else 
+            if (n < m)
             {
-                longerList = nums2.ToArray().ToList();
-                shorterList = nums1.ToArray().ToList();
+                list = nums2.ToList();
+                listBig = nums1.ToList();
+            }else
+            {
+                list = nums1.ToList();
+                listBig = nums2.ToList();
             }
 
-            int realSize = longerList.Count > shorterList.Count ? longerList.Count : shorterList.Count;
-
-            while (realSize != longerList.Count)
+            for (int i = list.Count()-1; i >= 0; i--)
             {
-                longerList.Add(0);
+                if (list[i] == 0) { list.RemoveAt(i); } else { break; }
             }
-
-            for (int i = 0; i < realSize; i++) 
+            for (int i = listBig.Count() - 1; i >= 0; i--)
             {
-                foreach (int item in shorterList.Where(x => x < longerList[i] && x != 0))
+                if (listBig[i] == 0) { listBig.RemoveAt(i); } else { break; }
+            }
+            for (int i = 0; i < listBig.Count(); i++)
+            {
+               
+                if (list.Any(x => x < listBig[i]))
                 {
-                    if (!solution.Any(x => x == item))
+                    foreach(int item in list.FindAll(x => x < listBig[i]))
                     {
-                        foreach (int item2 in shorterList.Where(x => x == item))
-                        {
-                            solution.Add(item2);
-                        }
-                        
+                        solution.Add(item);
+                        list.Remove(item);
                     }
+                   
+
+                    if ((listBig.Count == list.Count) && i == listBig.Count - 1)
+                    {
+                        foreach (var item in list.FindAll(x => x > listBig[i]))
+                        {
+                            solution.Add(item);
+                        }
+
+                    }
+                    
                 }
-                if (longerList[i] == 0 && solution.Any(x => x > 0))
+
+                if(list.Any(x => x == listBig[i]))
                 {
-                    foreach (int item in shorterList.Where(x => x > longerList[i - 1]))
+                    foreach (var item in list.FindAll(x => x == listBig[i]))
+                    {
+                        solution.Add(item);
+                        list.Remove(item);
+                    }
+                    
+                }
+
+                solution.Add(listBig[i]);
+                if (list.Count > 0 && i == listBig.Count - 1)
+                {
+                    foreach (var item in list.FindAll(x => x > listBig[i]))
                     {
                         solution.Add(item);
                     }
-                    break;
                 }
-                else 
+                
+                if ((listBig.Count == list.Count) && i == listBig.Count - 1)
                 {
-                    solution.Add(longerList[i]);
+                    foreach (var item in list.FindAll(x => x > listBig[i]))
+                    {
+                        solution.Add(item);
+                        list.Remove(item);
+                    }
+
                 }
-
-
-                int count = shorterList.Count(x => x == longerList[i]);
-                while (count > 0)
-                {
-                    solution.Add(longerList[i]);
-                    count--;
-                }
-
             }
-            for (int i = 0; i < nums1.Length; i++)
+            for (int i = 0; i < solution.Count();i++)
             {
                 nums1[i] = solution[i];
             }
