@@ -55,11 +55,90 @@ namespace LeetTest
             //Console.WriteLine(MySqrt(2147483647));
             //  Console.WriteLine(ClimbStairs(45));
             // Merge(new int[] { 4, 4, 0, 0, 0, 0 }, 1, new int[] { 1, 2, 3, 5, 6 }, 5);
-            Merge(new int[] { 0, 0, 3, 0, 0, 0, 0, 0, 0 },3,new int[] { -1, 1, 1, 1, 2, 3 },6);
+            //Merge(new int[] { 0, 0, 3, 0, 0, 0, 0, 0, 0 },3,new int[] { -1, 1, 1, 1, 2, 3 },6);
             //Merge(new int[] { 2, 0 }, 1, new int[] { 1}, 1);
-            Merge(new int[] { 1,2,3,4,5,0 }, 5, new int[] { 6 }, 1);
+            //// Merge(new int[] { 1,2,3,4,5,0 }, 5, new int[] { 6 }, 1);
+            Console.WriteLine(GetRow(0));
         }
 
+
+        public static IList<int> GetRow(int rowIndex) // 119 pascal's triangle 2
+        {
+            IList<IList<int>> solutionList = new List<IList<int>>();
+            List<int> tempList = new List<int>();
+
+            for (int i = 0; i <= rowIndex; i++)
+            {
+                if (i == 0)
+                {
+                    solutionList.Add(new List<int>() { 1 }.ToArray());
+                    if (i == rowIndex) return new int[] { 1 };
+                }
+                else if (i == 1)
+                {
+                    solutionList.Add(new List<int>() { 1, 1 }.ToArray());
+                    if (i == rowIndex) return new int[] { 1 , 1};
+                }
+                else
+                {
+                    tempList.Add(1);
+
+                    for (int j = 0; j < solutionList[i - 1].Count - 1; j++)
+                    {
+                        tempList.Add(solutionList[i - 1][j] + solutionList[i - 1][j + 1]);
+                    }
+
+
+                    tempList.Add(1);
+                    if (i == rowIndex  ) return tempList;
+                    solutionList.Add(tempList.ToArray());
+                    tempList.Clear();
+                }
+
+
+
+            }
+
+
+            return tempList;
+        }
+        public static IList<IList<int>> Generate(int numRows) //#118 pascal's triangle
+        {
+            IList<IList<int>> solutionList = new List<IList<int>>();
+            List<int> tempList = new List<int>();
+
+            for (int i = 1; i <= numRows; i++)
+            {
+                if (i == 1)
+                {
+                    solutionList.Add(new List<int>() { 1 }.ToArray());
+                } else if (i == 2)
+                {
+                    solutionList.Add(new List<int>() { 1, 1 }.ToArray());
+                } 
+                else
+                {
+                    tempList.Add(1);
+
+                    for (int j = 0; j < solutionList[i - 2].Count - 1; j++)
+                    {
+                        tempList.Add(solutionList[i - 2][j] + solutionList[i - 2][j + 1]);
+                    }
+
+
+                    tempList.Add(1);
+                    solutionList.Add(tempList.ToArray());
+                    tempList.Clear();
+                }
+
+
+
+            }
+
+
+            return solutionList;
+
+        }
         public static void Merge(int[] nums1, int m, int[] nums2, int n)
         {
             if (m == 0 && n == 0) return;
@@ -95,16 +174,6 @@ namespace LeetTest
                         solution.Add(item);
                         list.Remove(item);
                     }
-                   
-
-                    if ((listBig.Count == list.Count) && i == listBig.Count - 1)
-                    {
-                        foreach (var item in list.FindAll(x => x > listBig[i]))
-                        {
-                            solution.Add(item);
-                        }
-
-                    }
                     
                 }
 
@@ -119,6 +188,7 @@ namespace LeetTest
                 }
 
                 solution.Add(listBig[i]);
+
                 if (list.Count > 0 && i == listBig.Count - 1)
                 {
                     foreach (var item in list.FindAll(x => x > listBig[i]))
@@ -127,15 +197,15 @@ namespace LeetTest
                     }
                 }
                 
-                if ((listBig.Count == list.Count) && i == listBig.Count - 1)
-                {
-                    foreach (var item in list.FindAll(x => x > listBig[i]))
-                    {
-                        solution.Add(item);
-                        list.Remove(item);
-                    }
+                //if ((listBig.Count == list.Count) && i == listBig.Count - 1)
+                //{
+                //    foreach (var item in list.FindAll(x => x > listBig[i]))
+                //    {
+                //        solution.Add(item);
+                //        list.Remove(item);
+                //    }
 
-                }
+                //}
             }
             for (int i = 0; i < solution.Count();i++)
             {
