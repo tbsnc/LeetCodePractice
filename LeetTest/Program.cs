@@ -58,9 +58,70 @@ namespace LeetTest
             //Merge(new int[] { 0, 0, 3, 0, 0, 0, 0, 0, 0 },3,new int[] { -1, 1, 1, 1, 2, 3 },6);
             //Merge(new int[] { 2, 0 }, 1, new int[] { 1}, 1);
             //// Merge(new int[] { 1,2,3,4,5,0 }, 5, new int[] { 6 }, 1);
-            Console.WriteLine(GetRow(0));
+            // Console.WriteLine(GetRow(0));
+            //Console.WriteLine(MaxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
+            //Console.WriteLine(IsPalindrome("A man, a plan, a canal: Panama"));
+            Console.WriteLine(SingleNumber(new int[] { 4, 1, 2, 1, 2 }));
         }
 
+        public static int SingleNumber(int[] nums)//136. Single Number
+        {
+            List<int> listNums = new List<int>();   
+            listNums = nums.ToList();
+            if(nums.Length == 1) return nums[0];
+            for (int i = 0; i < listNums.Count; i++)
+            {
+                if (listNums.Where(x => x == i).Count() == 1) return i;
+            }
+            return 0;
+        }
+        public static bool IsPalindrome(string s) // #125 valid palindrome
+        {
+            List<char> chars = new List<char>();
+            foreach (char c in s.ToLower())
+            {
+                if (char.IsLetterOrDigit(c))
+                {
+                    chars.Add(c);
+                }
+            }
+            for (int i = 0; i < chars.Count; i++)
+            {
+                if (chars[i] != chars[chars.Count - i-1])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static int MaxProfit(int[] prices)//121. Best Time to Buy and Sell Stock
+        {
+            int cheapest = 0;
+            int maxProfit = 0;
+            
+            for (int i = 0; i < prices.Length; i++)
+            {
+                if (i == 0)
+                {
+                    cheapest = prices[i];
+                    continue;
+                }
+
+                if (maxProfit < prices[i] - cheapest) 
+                {
+                    maxProfit = prices[i] - cheapest;
+                }
+
+                if (cheapest > prices[i])
+                {
+                    cheapest = prices[i];
+                }
+
+                
+            }
+
+            return maxProfit;
+        }
 
         public static IList<int> GetRow(int rowIndex) // 119 pascal's triangle 2
         {
