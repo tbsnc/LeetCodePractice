@@ -61,7 +61,125 @@ namespace LeetTest
             // Console.WriteLine(GetRow(0));
             //Console.WriteLine(MaxProfit(new int[] { 7, 1, 5, 3, 6, 4 }));
             //Console.WriteLine(IsPalindrome("A man, a plan, a canal: Panama"));
-            Console.WriteLine(SingleNumber(new int[] { 4, 1, 2, 1, 2 }));
+            //Console.WriteLine(SingleNumber(new int[] { 4, 1, 2, 1, 2 }));
+
+            //Console.WriteLine(ConvertToTitle2(2147483647));
+            Console.WriteLine(MajorityElement(new int[] { 2, 2, 1, 1, 1, 2, 2 }));
+        }
+
+        public static int MajorityElement(int[] nums) //169. Majority element
+        {
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dict.Any(x => x.Key == nums[i]))
+                {
+                    dict[nums[i]]++;
+                }else
+                {
+                    dict[nums[i]] = 1;
+                }
+            }
+            var result = dict.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+            return result;
+        }
+        public static string ConvertToTitle2(int columnNumber)
+        {
+            string result = "";
+            while (columnNumber > 0)
+            {
+                columnNumber--;
+                char c = (char)('A' + columnNumber % 26);
+                result = c + result;
+                columnNumber /= 26;
+            }
+            return result;
+        }
+        public static string ConvertToTitle(int columnNumber)
+        {
+            List<char> alphabet = new List<char>();
+            List<int> listInt = new List<int>();
+            listInt.Add(0);
+            listInt.Add(0);
+            listInt.Add(0);
+            listInt.Add(0);
+            listInt.Add(0);
+            listInt.Add(0);
+            listInt.Add(0);
+
+            string s = "";
+            int listIntIndex = 1;
+            bool carry = false;
+            #region alphabet
+            alphabet.Add('-');
+            alphabet.Add('A');
+            alphabet.Add('B');
+            alphabet.Add('C');
+            alphabet.Add('D');
+            alphabet.Add('E');
+            alphabet.Add('F');
+            alphabet.Add('G');
+            alphabet.Add('H');
+            alphabet.Add('I');
+            alphabet.Add('J');
+            alphabet.Add('K');
+            alphabet.Add('L');
+            alphabet.Add('M');
+            alphabet.Add('N');
+            alphabet.Add('O');
+            alphabet.Add('P');
+            alphabet.Add('Q');
+            alphabet.Add('R');
+            alphabet.Add('S');
+            alphabet.Add('T');
+            alphabet.Add('U');
+            alphabet.Add('V');
+            alphabet.Add('W');
+            alphabet.Add('X');
+            alphabet.Add('Y');
+            alphabet.Add('Z');
+            #endregion
+
+            for (int i = 1; i <= columnNumber; i++)
+            {
+                if (listInt[listInt.Count - 1] == 26)
+                {
+
+                    for (int j = listInt.Count - 1; j >= 0; j--)
+                    {
+
+                        if (listInt[j] == 26)
+                        {
+                            listInt[j] = 1;
+                            
+                            carry = true;
+                        }
+                        else if (carry)
+                        {
+                            listInt[j]++;
+                            if (listInt[j] == 27)
+                            {
+                                listInt[j] = 1;
+                                carry = true;
+                            }else
+                            {
+                                carry = false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    listInt[listInt.Count - 1]++;
+                }
+            }
+            foreach (int i in listInt.Where(x => x!=0))
+            {
+                s += alphabet[i];
+
+            }
+            return s;
         }
 
         public static int SingleNumber(int[] nums)//136. Single Number
@@ -69,7 +187,7 @@ namespace LeetTest
             List<int> listNums = new List<int>();   
             listNums = nums.ToList();
             if(nums.Length == 1) return nums[0];
-            for (int i = 0; i < listNums.Count; i++)
+            for (int i = listNums.Min(); i < listNums.Count; i++)
             {
                 if (listNums.Where(x => x == i).Count() == 1) return i;
             }
