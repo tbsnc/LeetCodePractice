@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -64,9 +65,34 @@ namespace LeetTest
             //Console.WriteLine(SingleNumber(new int[] { 4, 1, 2, 1, 2 }));
 
             //Console.WriteLine(ConvertToTitle2(2147483647));
-            Console.WriteLine(MajorityElement(new int[] { 2, 2, 1, 1, 1, 2, 2 }));
+            //Console.WriteLine(MajorityElement(new int[] { 2, 2, 1, 1, 1, 2, 2 }));
+            Console.WriteLine(LengthOfLongestSubstring("abcdcefg"));
         }
 
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            Dictionary<char, int> seenChars = new Dictionary<char, int>();
+            int lPointer = 0;
+            int maxLength = 0;
+            char character;
+            for (int rPointer = 0; rPointer < s.Length; rPointer++)
+            {
+                character = s[rPointer];
+                if (seenChars.ContainsKey(character) && seenChars[character] >= lPointer)
+                {
+                    lPointer = seenChars[character] + 1;
+                }else
+                {
+                    maxLength = maxLength > rPointer - lPointer + 1 ? maxLength : rPointer - lPointer + 1;
+                }
+                seenChars[character] = rPointer;
+            }
+
+            return maxLength;
+
+
+        }
         public static int MajorityElement(int[] nums) //169. Majority element
         {
             Dictionary<int, int> dict = new Dictionary<int, int>();
