@@ -66,11 +66,76 @@ namespace LeetTest
 
             //Console.WriteLine(ConvertToTitle2(2147483647));
             //Console.WriteLine(MajorityElement(new int[] { 2, 2, 1, 1, 1, 2, 2 }));
-            Console.WriteLine(LengthOfLongestSubstring("abcdcefg"));
+            // Console.WriteLine(LengthOfLongestSubstring("abcdcefg"));
+            // Console.WriteLine(LengthOfLongestSubstring2("abcdcefg"));
+            Console.WriteLine(LongestPalindromeOn2("bbb"));
+          //  Console.WriteLine(IsStrPalindrome("anavolimilovana").ToString());
+        }
+        public static string LongestPalindromeOn2(string s)
+        {
+            string result = "";
+            string current = "";
+           
+            for (int i = 0; i < s.Length  ; i++)
+            {
+                
+                for (int j = 1; j <= s.Length - i ; j++)
+                {
+                    current = s.Substring(i, j);
+                    if (IsStrPalindrome(current))
+                    {
+                        result = current.Length > result.Length ? current : result;
+                    }
+                }
+
+            }
+
+
+            return result;
         }
 
 
-        public static int LengthOfLongestSubstring(string s)
+
+
+        public static bool IsStrPalindrome(string s)
+        {
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] != s[s.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static int LengthOfLongestSubstring2(string s)
+        {
+            Dictionary<char,int> keyValuePairs = new Dictionary<char,int>();
+            int l = 0;
+            int maxLen = 0;
+
+            char character;
+
+            for (int r = 0; r < s.Length; r++)
+            {
+                character = s[r];
+
+                if (keyValuePairs.ContainsKey(character) && keyValuePairs[character] >= l)
+                {
+                    l = keyValuePairs[character] + 1;
+                }else
+                {
+                    maxLen = maxLen > r - l + 1 ? maxLen : r - l + 1;
+                }
+                keyValuePairs[character] = r;
+            }
+
+            return 0;
+        }
+
+
+        public static int LengthOfLongestSubstring(string s) //#3  Longest substring without repeating chars
         {
             Dictionary<char, int> seenChars = new Dictionary<char, int>();
             int lPointer = 0;
