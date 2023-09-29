@@ -68,8 +68,85 @@ namespace LeetTest
             //Console.WriteLine(MajorityElement(new int[] { 2, 2, 1, 1, 1, 2, 2 }));
             // Console.WriteLine(LengthOfLongestSubstring("abcdcefg"));
             // Console.WriteLine(LengthOfLongestSubstring2("abcdcefg"));
-            Console.WriteLine(LongestPalindromeOn2("bbb"));
-          //  Console.WriteLine(IsStrPalindrome("anavolimilovana").ToString());
+            //Console.WriteLine(LongestPalindromeOn2("bbb"));
+            //Console.WriteLine(Reverse(-123));
+            //  Console.WriteLine(IsStrPalindrome("anavolimilovana").ToString());
+
+            Console.WriteLine(MyAtoi("  -0012a42"));
+            Console.WriteLine(MyAtoi("words and 987"));
+           
+        }
+
+      
+
+        public static int MyAtoi(string s)
+        {
+            if(int.TryParse(s,out int x)) return x;
+            int prefix=1;
+            bool numReached = false;
+            bool prefixAsigned = false;
+            s = s.Trim();
+            string newS = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (newS.Length == 0 && (s[i] == '+' || s[i] == '-'))
+                {
+                    if (prefixAsigned) return 0;
+                    prefix = s[i] == '+' ? 1 : -1;
+                    continue;
+                }
+
+                if (int.TryParse(s[i].ToString(), out x))
+                {
+                    newS += s[i];
+                    numReached = true;
+                }else if (newS.Length == 0)
+                {
+                    return 0;
+                }
+                else if (numReached)
+                {
+                    if (int.TryParse(newS, out x))
+                    {
+                        return int.Parse(newS) * prefix;
+                    }
+                    else
+                    {
+                        return prefix == 1 ? int.MaxValue : int.MinValue;
+                    }
+                }
+            }
+           
+            if (int.TryParse(newS, out x))
+            {
+                return int.Parse(newS)*prefix;
+            }else
+            {
+                return prefix == 1 ? int.MaxValue : int.MinValue;
+            }
+        }
+
+
+        public static int Reverse(int x)
+        {
+            string number = x.ToString();
+            string newNumber = "";
+            bool negative = false;
+            if (number[0] == '-')
+            {
+                number = number.Substring(1);
+                negative = true;
+            }
+
+            for (int i = number.Length - 1; i >= 0; i--)
+            {
+                newNumber+= number[i];
+            }
+
+            if(negative)newNumber = string.Format("-{0}", newNumber);
+
+            return int.TryParse(newNumber, out x) ? int.Parse(newNumber) : 0;
+           
         }
         public static string LongestPalindromeOn2(string s)
         {
