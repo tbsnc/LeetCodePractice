@@ -73,7 +73,8 @@ namespace LeetTest
             //  Console.WriteLine(IsStrPalindrome("anavolimilovana").ToString());
             //Console.WriteLine(MyAtoi("  -0012a42"));
             //Console.WriteLine(MyAtoi("words and 987"));
-            Console.WriteLine(new _12_IntegerToRoman(1994));
+            //Console.WriteLine(new _12_IntegerToRoman(1994));
+            Console.WriteLine(new _15_3Sum(new int[] { -1, 0, 1, 2, -1, -4 }));
         }
        
         
