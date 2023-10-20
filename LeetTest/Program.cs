@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using LeetTest.KataTraining;
 namespace LeetTest
 {
     public class ListNode //21. Merge Two sorted list
@@ -76,7 +76,8 @@ namespace LeetTest
             //Console.WriteLine(new _12_IntegerToRoman(1994));
             // Console.WriteLine(new _15_3Sum(new int[] { -1, 0, 1, 2, -1, -4 }));
             //Console.WriteLine(new _17_LetterCombinationsPhoneNuber("234"));
-            Console.WriteLine(new _22_GenerateParentheses(3).ToString());
+         //   Console.WriteLine(new _22_GenerateParentheses(3).ToString());
+            Console.WriteLine(new Array_diff(new int[] { 1, 2, 2, 2, 3 },new int[] {2 }).ToString());
         }
        
         
