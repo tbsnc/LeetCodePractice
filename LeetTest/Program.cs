@@ -75,10 +75,16 @@ namespace LeetTest
             //Console.WriteLine(MyAtoi("words and 987"));
             //Console.WriteLine(new _12_IntegerToRoman(1994));
             // Console.WriteLine(new _15_3Sum(new int[] { -1, 0, 1, 2, -1, -4 }));
-            Console.WriteLine(new _17_LetterCombinationsPhoneNuber("234"));
+            //Console.WriteLine(new _17_LetterCombinationsPhoneNuber("234"));
+            Console.WriteLine(new _22_GenerateParentheses(3).ToString());
         }
        
         
+        public static void GenerateParenthesis()
+        {
+
+        }
+
         public static int MaxAreaFaster(int[] height)
         {
             int maxArea = 0;

@@ -51,6 +51,7 @@
     <Compile Include="12_IntegerToRoman.cs" />
     <Compile Include="15_3Sum.cs" />
     <Compile Include="17_LetterCombinationsPhoneNuber.cs" />
+    <Compile Include="22_GenerateParentheses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
