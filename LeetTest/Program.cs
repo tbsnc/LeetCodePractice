@@ -76,13 +76,23 @@ namespace LeetTest
             //Console.WriteLine(new _12_IntegerToRoman(1994));
             // Console.WriteLine(new _15_3Sum(new int[] { -1, 0, 1, 2, -1, -4 }));
             //Console.WriteLine(new _17_LetterCombinationsPhoneNuber("234"));
-         //   Console.WriteLine(new _22_GenerateParentheses(3).ToString());
-            Console.WriteLine(new Array_diff(new int[] { 1, 2, 2, 2, 3 },new int[] {2 }).ToString());
+            //   Console.WriteLine(new _22_GenerateParentheses(3).ToString());
+            //Console.WriteLine(new Array_diff(new int[] { 1, 2, 2, 2, 3 },new int[] {2 }).ToString());
+            //test("");
+            Console.WriteLine(new SumOfDigits(942));
         }
        
         
-        public static void GenerateParenthesis()
+        public static void test(string phrase)
         {
+            List<string> splitPhrase = phrase.Split(' ').ToList();
+            string solution = "";
+            for(int i = 0; i <  splitPhrase.Count; i++)
+            {
+                solution+= splitPhrase[i][0].ToString().ToUpper() + splitPhrase[i].Substring(1, splitPhrase[i].Length - 1) + " ";
+            }
+
+            Console.WriteLine();
 
         }
 

@@ -53,6 +53,8 @@
     <Compile Include="17_LetterCombinationsPhoneNuber.cs" />
     <Compile Include="22_GenerateParentheses.cs" />
     <Compile Include="KataTraining\Array_diff.cs" />
+    <Compile Include="KataTraining\SumOfDigits.cs" />
+    <Compile Include="KataTraining\WhoLikesIt.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
