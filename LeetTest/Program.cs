@@ -79,12 +79,31 @@ namespace LeetTest
             //   Console.WriteLine(new _22_GenerateParentheses(3).ToString());
             //Console.WriteLine(new Array_diff(new int[] { 1, 2, 2, 2, 3 },new int[] {2 }).ToString());
             //test("");
-            Console.WriteLine(new SumOfDigits(942));
+            //Console.WriteLine(new SumOfDigits(942));
+            test("camelCasingTest");
         }
        
         
         public static void test(string phrase)
         {
+            int start = 0;
+            List<string> solutions = new List<string>();    
+            for (int i = 0; i < phrase.Length; i++)
+            {
+                if (phrase[i].ToString() == phrase[i].ToString().ToUpper())
+                {
+                    solutions.Add(phrase.Substring(start,i - start));
+                    start = i;
+                }
+            }
+            if(start < phrase.Length)
+            {
+                solutions.Add(phrase.Substring(start,phrase.Length - start));   
+            }
+
+
+
+
             List<string> splitPhrase = phrase.Split(' ').ToList();
             string solution = "";
             for(int i = 0; i <  splitPhrase.Count; i++)
