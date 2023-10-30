@@ -80,7 +80,8 @@ namespace LeetTest
             //Console.WriteLine(new Array_diff(new int[] { 1, 2, 2, 2, 3 },new int[] {2 }).ToString());
             //test("");
             //Console.WriteLine(new SumOfDigits(942));
-            test("camelCasingTest");
+            //test("camelCasingTest");
+            Console.WriteLine(new Rot13("Test"));
         }
        
         
