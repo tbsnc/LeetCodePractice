@@ -81,7 +81,7 @@ namespace LeetTest
             //test("");
             //Console.WriteLine(new SumOfDigits(942));
             //test("camelCasingTest");
-            Console.WriteLine(new Rot13("Test"));
+            Console.WriteLine(new MaxSubArraySum());
         }
        
         
@@ -354,7 +354,7 @@ namespace LeetTest
             listInt.Add(0);
 
             string s = "";
-            int listIntIndex = 1;
+
             bool carry = false;
             #region alphabet
             alphabet.Add('-');

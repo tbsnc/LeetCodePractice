@@ -56,9 +56,12 @@
     <Compile Include="KataTraining\BreakCamelCase.cs" />
     <Compile Include="KataTraining\CountCharsInString.cs" />
     <Compile Include="KataTraining\GetTheMainCharacter.cs" />
+    <Compile Include="KataTraining\HumanReadableTime.cs" />
+    <Compile Include="KataTraining\MaxSubArraySum.cs" />
     <Compile Include="KataTraining\Rot13.cs" />
     <Compile Include="KataTraining\SumOfDigits.cs" />
     <Compile Include="KataTraining\WhoLikesIt.cs" />
+    <Compile Include="KataTraining\YourOrderPlease.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
