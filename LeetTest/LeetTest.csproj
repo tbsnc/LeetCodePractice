@@ -60,6 +60,7 @@
     <Compile Include="KataTraining\MaxSubArraySum.cs" />
     <Compile Include="KataTraining\Rot13.cs" />
     <Compile Include="KataTraining\SumOfDigits.cs" />
+    <Compile Include="KataTraining\SumOfIntervals.cs" />
     <Compile Include="KataTraining\TheObservedPIN.cs" />
     <Compile Include="KataTraining\WhoLikesIt.cs" />
     <Compile Include="KataTraining\YourOrderPlease.cs" />
