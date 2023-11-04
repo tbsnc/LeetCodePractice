@@ -81,7 +81,7 @@ namespace LeetTest
             //test("");
             //Console.WriteLine(new SumOfDigits(942));
             //test("camelCasingTest");
-            Console.WriteLine(new MaxSubArraySum());
+            Console.WriteLine(new TheObservedPIN());
         }
        
         
