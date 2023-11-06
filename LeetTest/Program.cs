@@ -81,7 +81,10 @@ namespace LeetTest
             //test("");
             //Console.WriteLine(new SumOfDigits(942));
             //test("camelCasingTest");
-            Console.WriteLine(new Scramblies());
+            //Console.WriteLine(new Scramblies());
+            //var test = new RomanNumeralsHelper();
+            var test = new FindUnknownDigit();
+
         }
        
         

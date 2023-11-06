@@ -55,10 +55,12 @@
     <Compile Include="KataTraining\Array_diff.cs" />
     <Compile Include="KataTraining\BreakCamelCase.cs" />
     <Compile Include="KataTraining\CountCharsInString.cs" />
+    <Compile Include="KataTraining\FindUnknownDigit.cs" />
     <Compile Include="KataTraining\GetTheMainCharacter.cs" />
     <Compile Include="KataTraining\GreedIsGood.cs" />
     <Compile Include="KataTraining\HumanReadableTime.cs" />
     <Compile Include="KataTraining\MaxSubArraySum.cs" />
+    <Compile Include="KataTraining\RomanNumeralsHelper.cs" />
     <Compile Include="KataTraining\Rot13.cs" />
     <Compile Include="KataTraining\Scramblies.cs" />
     <Compile Include="KataTraining\SimplePigLatin.cs" />
