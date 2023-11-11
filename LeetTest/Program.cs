@@ -83,7 +83,10 @@ namespace LeetTest
             //test("camelCasingTest");
             //Console.WriteLine(new Scramblies());
             //var test = new RomanNumeralsHelper();
-            var test = new FindUnknownDigit();
+            //var test = new FindUnknownDigit();
+            // var test = new DecodeMorseCode();
+            // var test = new TextAlignJustify();
+            var test = new LargeFactorials();
 
         }
        
